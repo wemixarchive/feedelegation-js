@@ -185,7 +185,7 @@ Unsigned FDDTx= {
 
 - 자세한 내용은 제공된 sample code을 참조하시면 됩니다.
   - sample code : FeeDelegateSampleCode.js
+  - 참조 : https://github.com/wemixarchive/feedelegation-js
 
 
-- 참조 : https://github.com/wemixarchive/go-wemix
-
+- go-wemix : https://github.com/wemixarchive/go-wemix
