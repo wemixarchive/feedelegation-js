@@ -56,7 +56,7 @@ function SignedTxDecode(rawTransaction){
         decodeTx.gas = Utils.bufferToHex(gas);
         decodeTx.to = Utils.bufferToHex(to);
         decodeTx.value = Utils.bufferToHex(value);
-        decodeTx.data = Utils.bufferToHex(data);
+        decodeTx.input = Utils.bufferToHex(data);
         decodeTx.accessList = Utils.bufferToHex(accessList);
         if(decodeTx.accessList=='0x') decodeTx.accessList=[]
         decodeTx.v = v;
@@ -71,7 +71,7 @@ function SignedTxDecode(rawTransaction){
         decodeTx.gas = Utils.bufferToHex(gas);
         decodeTx.to = Utils.bufferToHex(to);
         decodeTx.value = Utils.bufferToHex(value);
-        decodeTx.data = Utils.bufferToHex(data);
+        decodeTx.input = Utils.bufferToHex(data);
         decodeTx.accessList = Utils.bufferToHex(accessList);
         if(decodeTx.accessList=='0x') decodeTx.accessList=[]
         decodeTx.v = v;
