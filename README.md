@@ -53,7 +53,7 @@ result:
 
 Firstly, create raw data of DynamicFeeTxType(0x02) transaction using personal.signTransaction function.
 ```
-$ bin/gweimx.sh console
+$ bin/gwemix.sh console
 > personal.signTransaction({"from":"0xc3e44aac2d0457942baffa1dc3be313bc8d65627","to":"0xdb8408bb47bf5e745fed00fc2c99e2f4e1a9270f","nonce":"0x1c","value":"0xDE0B6B3A7640000","maxPriorityFeePerGas":"0x174876E801","maxFeePerGas":"0x174876E801","gas":"0x5208"})
 
 {
@@ -80,7 +80,7 @@ $ bin/gweimx.sh console
 
 Secondly, create raw data of fee delegation transaction using personal.signTransaction function (which is added to support fee delegation transaction).
 ```
-$ bin/gweimx.sh console
+$ bin/gwemix.sh console
 > personal.signRawFeeDelegateTransaction({"feePayer":"0xdb8408bb47bf5e745fed00fc2c99e2f4e1a9270f"},"0x02f8768204581c85174876e80185174876e80182520894db8408bb47bf5e745fed00fc2c99e2f4e1a9270f880de0b6b3a764000080c080a0b4dc96b4580bd1d3f090b953ea3612625dd834af8e7cc6146def84a0c137b32ca0082427bf3a4589ffe79bebad9151ece587790462cd44abdd810abe0016134b8f","test")
 
 {
@@ -111,7 +111,7 @@ $ bin/gweimx.sh console
 
 Finally, send signed fee delegation transaction to blockchain using eth.sendRawTransaction function.
 ```
-$ bin/gweimx.sh console
+$ bin/gwemix.sh console
 > eth.sendRawTransaction('0x16f8d0f8768204581c85174876e80185174876e80182520894db8408bb47bf5e745fed00fc2c99e2f4e1a9270f880de0b6b3a764000080c080a0b4dc96b4580bd1d3f090b953ea3612625dd834af8e7cc6146def84a0c137b32ca0082427bf3a4589ffe79bebad9151ece587790462cd44abdd810abe0016134b8f94db8408bb47bf5e745fed00fc2c99e2f4e1a9270f80a0ba376dff9a2a4344a570367c94eeee2434a0e44ccf2da900f54becc6adaf0b5ca077b7d15ab7ba7213b5189094ca1bd41c7a48390767e4acb14c98f3442e561abb')
 
 0x19b5e90deb03cd4b87aca41ca09dcfed5e7c7ad33e6579f30f7efba722c54424
