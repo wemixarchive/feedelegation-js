@@ -11,8 +11,31 @@ const from_privateKey = "0xa130bb53dfe95ad8dc480001c08af1e026593a920e1564ec19bc2
 const feePayer_addr = "0xab046cC2e871aF34898DD45C5B7F3754B76470BC"
 const feePayer_privateKey = "0xc0357c96d357f4ac22ac02c15edc8aa00c020f898d5cbf36b2b5efd8d5a3a73c";
 
+const nodeUrl = 'http://127.0.0.1:8588'
+
+const axios = require('axios');
 const Web3 = require('web3')
-const web3 = new Web3(new Web3.providers.HttpProvider('http://127.0.0.1:8588'))
+
+// When Running on macOS (Mac)
+const web3 = new Web3(new Web3.providers.HttpProvider(nodeUrl))
+
+// When running on Linux (Ubuntu)
+// const web3 = new Web3.Web3(nodeUrl)
+
+async function sendRawTransaction(rawTransaction) {
+    try {
+        const response = await axios.post(nodeUrl, {
+            jsonrpc: '2.0',
+            method: 'eth_sendRawTransaction',
+            params: [rawTransaction],
+            id: 1,
+        });
+
+        return response.data.result;
+    } catch (error) {
+        throw new Error(`Error broadcasting transaction: ${error.message}`);
+    }
+}
 
 async function sample1_FeeDeleagteDynamicFeeTx(){
     //Create DynamicTxType Transaction
@@ -20,9 +43,9 @@ async function sample1_FeeDeleagteDynamicFeeTx(){
     Tx.from = from_addr
     Tx.chainId = ChainId
     Tx.nonce = await web3.eth.getTransactionCount(Tx.from)
-    Tx.gas = web3.utils.toHex('100000')
-    Tx.maxPriorityFeePerGas = web3.utils.toHex('100000000001')
-    Tx.maxFeePerGas = web3.utils.toHex('100000000001')
+    Tx.gas = web3.utils.toHex(100000)
+    Tx.maxPriorityFeePerGas = web3.utils.toHex(100000000001)
+    Tx.maxFeePerGas = web3.utils.toHex(100000000001)
     Tx.to= "0x82667998ae5fd9e4f4637fc805e97740c673c517"
     Tx.value = '0x100'
     Tx.input = '0x'
@@ -78,8 +101,8 @@ async function sample1_FeeDeleagteDynamicFeeTx(){
 
     //Send FeeDeleagteDynamicTx rawTransaction
     try{
-        let result = await web3.eth.sendSignedTransaction(rawTransaction)
-        console.log("sendSignedTransaction result=",result)
+        let result = await sendRawTransaction(rawTransaction)
+        console.log("sendRawTransaction result=",result)
     }catch (e) {
         console.log(e.toString())
     }
@@ -91,9 +114,9 @@ async function sample2_FeeDeleagteDynamicFeeTx() {
     Tx.from = from_addr
     Tx.chainId = ChainId
     Tx.nonce = await web3.eth.getTransactionCount(Tx.from)
-    Tx.gas = web3.utils.toHex('100000')
-    Tx.maxPriorityFeePerGas = web3.utils.toHex('100000000001')
-    Tx.maxFeePerGas = web3.utils.toHex('100000000001')
+    Tx.gas = web3.utils.toHex(100000)
+    Tx.maxPriorityFeePerGas = web3.utils.toHex(100000000001)
+    Tx.maxFeePerGas = web3.utils.toHex(100000000001)
     Tx.to = "0x82667998ae5fd9e4f4637fc805e97740c673c517"
     Tx.value = '0x100000'
     Tx.input = '0x'
@@ -165,8 +188,8 @@ async function sample2_FeeDeleagteDynamicFeeTx() {
 
     //Send FeeDeleagteDynamicTx rawTransaction
     try {
-        let result = await web3.eth.sendSignedTransaction(rawTransaction)
-        console.log("sendSignedTransaction result=", result)
+        let result = await sendRawTransaction(rawTransaction)
+        console.log("sendRawTransaction result=",result)
     } catch (e) {
         console.log(e.toString())
     }
