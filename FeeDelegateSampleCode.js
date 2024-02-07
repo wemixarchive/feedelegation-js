@@ -15,12 +15,7 @@ const nodeUrl = 'http://127.0.0.1:8588'
 
 const axios = require('axios');
 const Web3 = require('web3')
-
-// When Running on macOS (Mac)
-const web3 = new Web3(new Web3.providers.HttpProvider(nodeUrl))
-
-// When running on Linux (Ubuntu)
-// const web3 = new Web3.Web3(nodeUrl)
+const web3 = new Web3.Web3(nodeUrl)
 
 async function sendRawTransaction(rawTransaction) {
     try {
